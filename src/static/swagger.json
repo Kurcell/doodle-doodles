@@ -1,0 +1,54 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Just a Doodle API",
+    "version": "1.0.0",
+    "title": "Just a Doodle API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "Doodles",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Doodles"
+        ],
+        "summary": "Returns greeting from API.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content" : {
+              "text/plain":{
+                "schema":{
+                  "type" : "string",
+                  "example": "Welcome to Just a Doodle's Doodle API!"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "doodle": {
+        "type": "object",
+        "properties": {
+          "createdat": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}
