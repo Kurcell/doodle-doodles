@@ -22,7 +22,7 @@ def create_app():
         SWAGGER_URL,
         API_URL,
         config={
-            'app_name': "Just a Doodle API"
+            'app_name': "Just a Doodle - Doodles API"
         }
     )
     app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
