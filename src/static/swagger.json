@@ -36,6 +36,154 @@
           }
         }
       }
+    },
+    "/doodle": {
+      "post": {
+        "tags": [
+          "Doodles"
+        ],
+        "summary": "Creates a doodle with given information.",
+        "requestBody": {
+          "description": "Doodle Create Request Body.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/doodlePostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/doodle"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doodles": {
+      "get": {
+        "tags": [
+          "Doodles"
+        ],
+        "summary": "Reads all doodles from database.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/doodle"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doodle/{id}": {
+      "get": {
+        "tags": [
+          "Doodles"
+        ],
+        "summary": "Finds a doodle of the given id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the doodle to retrieve.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/doodle"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Doodles"
+        ],
+        "summary": "Updates a doodle of the given id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the doodle to update.",
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Doodle Update Request Body.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/doodlePostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/doodle"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Doodles"
+        ],
+        "summary": "Deletes a doodle of the given id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the doodle to delete.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/doodle"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -43,9 +191,22 @@
       "doodle": {
         "type": "object",
         "properties": {
-          "createdat": {
+          "id": {
+            "type": "integer",
+            "format": "integer"
+          },
+          "instructions": {
             "type": "string",
-            "format": "date"
+            "format": "string"
+          }
+        }
+      },
+      "doodlePostBody": {
+        "type": "object",
+        "properties": {
+          "instructions": {
+            "type": "string",
+            "format": "string"
           }
         }
       }
